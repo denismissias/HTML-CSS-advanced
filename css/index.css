@@ -35,7 +35,25 @@ body {
     font-size: 4em;
     display: inline-block;
     transform: rotate(-5deg) skew(-10deg);
+    animation: flutua 1s infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+    position: relative;
 }
+
+.saudacao:hover em {
+    animation-play-state: paused;
+}
+
+@keyframes flutua {
+    from {
+        top: -5px;
+    }
+    to {
+        top: 5px;
+    }
+}
+
 .botao-index {
     font-size: 1.25em;
     background-color: #851944;
@@ -46,7 +64,17 @@ body {
     margin: 2em auto;
     display: block;
     text-align: center;
+    text-decoration: none;
+    transition: .5s;
 }
+
+.botao-index:focus,
+.botao-index:hover {
+    background-color: #C54974;
+    color: white;
+    box-shadow: 0 0 1em #FA9;
+}
+
 .secao-inicio {
     padding: 2em;
 }
@@ -144,6 +172,14 @@ main {
     float: none;
 }
 
+@keyframes aparece {
+    /* podemos usar a palavra-chave "from" também no lugar de 0% */
+    0% {
+        opacity: 0;
+        transform: scale(0.001);
+    }
+}
+
 .palavras-home {
     perspective: 6px;
     position: absolute;
@@ -151,6 +187,8 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
+    -webkit-animation: aparece 2s;
+    animation: aparece 2s;
 }
 
 .palavras-home li {
@@ -265,4 +303,8 @@ main {
     right: 0;
     transform-origin: 0 0;
     transform: translate(calc(.707 * (3.5em - 100%) + 100%), calc(-.707 * 3.5em)) rotate(45deg);
+
+    animation: aparece 0.5s;
+    animation-delay: 2s;
+    animation-fill-mode: backwards;
 }
